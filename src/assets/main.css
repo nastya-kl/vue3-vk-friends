@@ -1,0 +1,7 @@
+@import "normalize.css";
+
+body {
+  background-color: rgb(73, 73, 73);
+  color: #d8d8d8;
+  font-family: 'Roboto', sans-serif;
+}
