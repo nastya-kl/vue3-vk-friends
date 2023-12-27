@@ -12,6 +12,7 @@ export default {
 
 <style>
 .users-list {
+  position: relative;
   height: 57vh;
   background-color: rgb(61, 59, 59);
   border-radius: 3px;

@@ -3,7 +3,7 @@
     <h2 class="section__title">Друзья</h2>
     <my-button class="section__btn">Сбросить</my-button>
     <my-users-list>
-      <h3>Друзья не найдены</h3>
+      <h3 class="users-list__heading-empty">Друзья не найдены</h3>
     </my-users-list>
   </section>
 </template>

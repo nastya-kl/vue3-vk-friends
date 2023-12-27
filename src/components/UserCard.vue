@@ -1,11 +1,12 @@
 <template>
   <li class="user-card">
     <div :style="{ display: 'flex' }">
-      <img :src="user.photo" alt="Фото пользователя" class="user-card__photo" />
+      <img :src="user.photo_200_orig" alt="Фото пользователя" class="user-card__photo" />
       <div class="user-card__info">
-        <p class="user-card__name">{{ user.name }}</p>
-        <p class="user-card__last-name">{{ user.lastName }}</p>
+        <p class="user-card__name">{{ user.first_name }}</p>
+        <p class="user-card__last-name">{{ user.last_name }}</p>
       </div>
+      <p style="align-self: flex-end; margin: 0%;">id {{ user.id }}</p>
     </div>
     <my-button class="user-card__add-btn"></my-button>
   </li>
@@ -38,8 +39,9 @@ export default {
   overflow: hidden;
 }
 .user-card__photo {
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
   border-radius: 4px;
   margin-right: 20px;
 }

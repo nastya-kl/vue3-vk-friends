@@ -34,3 +34,9 @@ body {
   opacity: .8;
   cursor: pointer;
 }
+
+.users-list__heading-empty {
+  text-align: center;
+  font-size: 25px;
+  color: rgb(133, 133, 133);
+}
