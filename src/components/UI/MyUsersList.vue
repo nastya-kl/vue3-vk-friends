@@ -1,7 +1,7 @@
 <template>
-  <div class="users-list">
+  <ul class="users-list">
     <slot></slot>
-  </div>
+  </ul>
 </template>
 
 <script>
@@ -12,7 +12,7 @@ export default {
 
 <style>
 .users-list {
-  height: 60vh;
+  height: 57vh;
   background-color: rgb(61, 59, 59);
   border-radius: 3px;
   border: 1px solid rgb(44, 44, 44);

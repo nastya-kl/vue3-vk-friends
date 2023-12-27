@@ -1,5 +1,5 @@
 <template>
-  <div class="user-card">
+  <li class="user-card">
     <div :style="{ display: 'flex'}">
       <img :src="user.photo" alt="Фото пользователя" class="user-card__photo" />
       <div class="user-card__info">
@@ -11,7 +11,7 @@
       </div>
     </div>
     <my-button class="user-card__add-btn"></my-button>
-  </div>
+  </li>
 </template>
 
 <script>
