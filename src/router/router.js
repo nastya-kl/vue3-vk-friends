@@ -4,11 +4,11 @@ import UserPage from '@/pages/UserPage.vue'
 
 const routes = [
   {
-    path: '/',
+    path: '/vue3-vk-friends/',
     component: MainPage
   },
   {
-    path: '/user/:id',
+    path: '/vue3-vk-friends/user/:id',
     component: UserPage
   },
 ]
