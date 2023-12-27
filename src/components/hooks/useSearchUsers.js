@@ -1,0 +1,76 @@
+import { ref } from 'vue'
+
+export default function useSearchUsers() {
+  const users = ref([])
+  const searchQuery = ref('')
+
+  function searchUsers() {
+    if (searchQuery.value.trim() === '') {
+      users.value = []
+      return
+    }
+
+    if (isFinite(searchQuery.value)) {
+      // eslint-disable-next-line no-undef
+      VK.Api.call(
+        'users.get',
+        {
+          user_ids: searchQuery.value,
+          fields: 'photo_200_orig',
+          v: '5.131'
+        },
+        (r) => {
+          if (r) {
+            users.value = r.response
+          }
+        }
+      )
+    } else {
+      // eslint-disable-next-line no-undef
+      VK.Api.call(
+        'users.search',
+        {
+          q: searchQuery.value,
+          fields: 'photo_200_orig',
+          v: '5.131'
+        },
+        (r) => {
+          if (r) {
+            users.value = r.response.items
+          }
+        }
+      )
+    }
+  }
+
+  function loadMoreUsers() {
+    if (searchQuery.value.trim() === '') {
+      users.value = []
+      return
+    }
+
+    // eslint-disable-next-line no-undef
+    VK.Api.call(
+      'users.search',
+      {
+        q: searchQuery.value,
+        fields: 'photo_200_orig',
+        v: '5.131',
+        offset: users.value.length,
+        count: 5
+      },
+      (r) => {
+        if (r) {
+          users.value = [...users.value, ...r.response.items]
+        }
+      }
+    )
+  }
+
+  return {
+    users,
+    searchQuery,
+    searchUsers,
+    loadMoreUsers
+  }
+}

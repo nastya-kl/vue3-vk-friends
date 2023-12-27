@@ -10,7 +10,13 @@
     <my-users-list>
       <transition-group v-if="users.length > 0" name="user-list">
         <UserCard v-for="user in users" :user="user" :key="user.id" />
-        <my-button v-if="!isFinite(this.searchQuery)" @click="loadMoreUsers" style="padding: 10px">Ещё</my-button>
+        <my-button
+          v-if="!isFinite(this.searchQuery)"
+          @click="loadMoreUsers"
+          style="padding: 10px"
+          >
+            Ещё
+        </my-button>
       </transition-group>
       <h3 class="users-list__heading-empty" v-else>Пользователь не найден</h3>
     </my-users-list>
@@ -20,82 +26,23 @@
 <script>
 import MyUsersList from '@/components/UI/MyUsersList.vue'
 import UserCard from '@/components/UserCard.vue'
-// import axios from 'axios'
+import useSearchUsers from '@/components/hooks/useSearchUsers'
 
 export default {
-  data() {
-    return {
-      users: [],
-      searchQuery: ''
-    }
-  },
   components: {
     MyUsersList,
     UserCard
   },
-  methods: {
-    searchUsers() {
-      if (this.searchQuery.trim() === '') {
-        this.users = []
-        return
-      }
+  setup() {
+    const { users, searchQuery, searchUsers, loadMoreUsers } = useSearchUsers()
 
-      if (isFinite(this.searchQuery)) {
-        // eslint-disable-next-line no-undef
-        VK.Api.call(
-          'users.get',
-          { 
-            user_ids: this.searchQuery,
-            fields: 'photo_200_orig',
-            v: '5.131'
-          },
-          (r) => {
-            if (r) {
-              this.users = r.response
-            }
-          }
-        )
-      } else {
-        // eslint-disable-next-line no-undef
-        VK.Api.call(
-          'users.search',
-          {
-            q: this.searchQuery,
-            fields: 'photo_200_orig',
-            v: '5.131'
-          },
-          (r) => {
-            if (r) {
-              this.users = r.response.items
-            }
-          }
-        )
-      }
-    },
-    loadMoreUsers() {
-      if (this.searchQuery.trim() === '') {
-        this.users = []
-        return
-      }
-
-      // eslint-disable-next-line no-undef
-      VK.Api.call(
-        'users.search',
-        {
-          q: this.searchQuery,
-          fields: 'photo_200_orig',
-          v: '5.131',
-          offset: this.users.length,
-          count: 5
-        },
-        (r) => {
-          if (r) {
-            this.users = [...this.users, ...r.response.items]
-          }
-        }
-      )
+    return {
+      users,
+      searchQuery,
+      searchUsers,
+      loadMoreUsers
     }
-  }
+  },
 }
 </script>
 
