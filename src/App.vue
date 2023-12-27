@@ -1,11 +1,18 @@
 <template>
   <div class="app">
-    <img @click="$router.push('/')" class="logo" src="../public/icons/VK_Logo.svg" alt="Логотип Вконтакте" />
+    <img
+      @click="$router.push('/vue3-vk-friends/')"
+      class="logo"
+      src="../public/icons/VK_Logo.svg"
+      alt="Логотип Вконтакте"
+    />
     <router-view></router-view>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+
+</script>
 
 <style>
 .app {

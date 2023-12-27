@@ -1,13 +1,10 @@
 <template>
   <li class="user-card">
-    <div :style="{ display: 'flex'}">
+    <div :style="{ display: 'flex' }">
       <img :src="user.photo" alt="Фото пользователя" class="user-card__photo" />
       <div class="user-card__info">
-        <div :style="{ display: 'flex', gap: '5px' }">
-          <p class="user-card__name">{{ user.name }}</p>
-          <p class="user-card__last-name">{{ user.lastName }}</p>
-        </div>
-        <p class="user-card__id">id: {{ user.id }}</p>
+        <p class="user-card__name">{{ user.name }}</p>
+        <p class="user-card__last-name">{{ user.lastName }}</p>
       </div>
     </div>
     <my-button class="user-card__add-btn"></my-button>
@@ -28,6 +25,7 @@ export default {
 <style>
 .user-card {
   color: rgb(44, 44, 44);
+  position: relative;
   width: 100%;
   min-height: 60px;
   padding: 10px 15px;
@@ -37,29 +35,34 @@ export default {
   justify-content: space-between;
   border-radius: 3px;
   align-items: center;
+  overflow: hidden;
 }
 .user-card__photo {
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   border-radius: 4px;
   margin-right: 20px;
 }
 .user-card__info {
+  max-width: 165px;
   font-size: 20px;
   font-weight: 500;
   display: flex;
   flex-direction: column;
   gap: 5px;
+  justify-content: center;
+  margin-right: 10px;
 }
 .user-card__name,
-.user-card__last-name,
-.user-card__id {
+.user-card__last-name {
   margin: 0;
-}
-.user-card__id {
-  font-size: 17px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .user-card__add-btn {
+  top: 0;
+  right: 0;
   background: url('../../public/icons/Add-Icon.svg') no-repeat center;
   width: 30px;
   height: 30px;

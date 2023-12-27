@@ -8,7 +8,7 @@ const routes = [
     component: MainPage
   },
   {
-    path: '/vue3-vk-friends/user/:id',
+    path: '/vue3-vk-friends/users/:id',
     component: UserPage
   },
 ]

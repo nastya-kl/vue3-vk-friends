@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="user-page">
     
   </div>
 </template>
@@ -11,5 +11,8 @@ export default {
 </script>
 
 <style>
-  
+.user-page {
+  width: 500px;
+  height: 500px;
+}
 </style>

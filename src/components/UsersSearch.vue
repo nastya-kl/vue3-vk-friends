@@ -21,18 +21,13 @@ import UserCard from '@/components/UserCard.vue'
 export default {
   data() {
     return {
+      usets: [],
       searchQuery: ''
     }
   },
   components: {
     MyUsersList,
     UserCard
-  },
-  props: {
-    users: {
-      type: Array,
-      required: true
-    }
   },
   computed: {
     sortedUsers() {

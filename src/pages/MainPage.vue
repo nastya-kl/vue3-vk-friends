@@ -2,7 +2,7 @@
   <div class="main-page">
     <h1 class="main-page__heading">Поиск друзей</h1>
     <div class="main-page__container">
-      <UsersSearch :users="users"/>
+      <UsersSearch />
       <SelectedUsersList />
       <FriendsList />
     </div>
@@ -19,37 +19,7 @@ export default {
     UsersSearch,
     SelectedUsersList,
     FriendsList
-  },
-  data() {
-    return {
-      users: [
-        {
-          id: 1,
-          name: 'Иван',
-          lastName: 'Иванов',
-          photo: 'https://randomuser.me/api/portraits/women/1.jpg',
-        },
-        {
-          id: 2,
-          name: 'Петр',
-          lastName: 'Петров',
-          photo: 'https://randomuser.me/api/portraits/women/2.jpg',
-        },
-        {
-          id: 3,
-          name: 'Сергей',
-          lastName: 'Сергеев',
-          photo: 'https://randomuser.me/api/portraits/women/3.jpg',
-        },
-        {
-          id: 4,
-          name: 'Александр',
-          lastName: 'Александров',
-          photo: 'https://randomuser.me/api/portraits/women/4.jpg',
-        }
-      ],
-    };
-  },
+  }
 }
 </script>
 
