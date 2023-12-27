@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<svg width="30" height="30" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" version="1.0">
+ <!-- Created with SVG-edit - https://github.com/SVG-Edit/svgedit-->
+ <g class="layer">
+  <title>Layer 1</title>
+  <rect fill="#3266b3" height="30" id="svg_1" rx="4" ry="4" stroke="#000000" stroke-width="0" width="30"/>
+  <line fill="none" id="svg_2" stroke="#ffffff" stroke-linecap="round" stroke-width="2" x1="15.1" x2="15.1" y1="6.59" y2="23.59"/>
+  <line fill="none" id="svg_3" stroke="#ffffff" stroke-linecap="round" stroke-width="2" transform="rotate(90 15.0149 15.1485)" x1="15.03" x2="15" y1="6.65" y2="23.65"/>
+ </g>
+</svg>
