@@ -60,7 +60,7 @@ export default {
   font-size: 17px;
 }
 .user-card__add-btn {
-  background: url('../public/icons/Add-Icon.svg') no-repeat center;
+  background: url('../../public/icons/Add-Icon.svg') no-repeat center;
   width: 30px;
   height: 30px;
 }
