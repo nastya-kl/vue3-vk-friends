@@ -12,13 +12,26 @@ export default {
 
 <style>
 .users-list {
-  width: 100%;
-  min-height: 200px;
+  height: 60vh;
   background-color: rgb(61, 59, 59);
   border-radius: 3px;
+  border: 1px solid rgb(44, 44, 44);
   margin-top: 20px;
+  padding: 10px 10px;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 10px;
+  overflow-y: scroll;
+}
+.users-list::-webkit-scrollbar {
+  width: 7px;
+}
+.users-list::-webkit-scrollbar-track {
+  background-color: inherit;
+}
+.users-list::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 6px;
 }
 </style>

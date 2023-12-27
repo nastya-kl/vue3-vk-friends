@@ -24,6 +24,6 @@ export default {
   transform: scale(1.03);
 }
 .button:active {
-  background-color: rgb(79, 115, 192);
+  opacity: .8;
 }
 </style>

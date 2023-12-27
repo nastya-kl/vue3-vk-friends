@@ -1,6 +1,6 @@
 <template>
   <div class="app">
-    <img class="logo" src="../../public/icons/VK_Logo.svg" alt="Логотип Вконтакте" />
+    <img @click="$router.push('/')" class="logo" src="../../public/icons/VK_Logo.svg" alt="Логотип Вконтакте" />
     <router-view></router-view>
   </div>
 </template>
