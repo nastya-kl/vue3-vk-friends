@@ -21,13 +21,14 @@ export const userModule = {
           fields: ['photo_200_orig', 'sex', 'bdate'],
           counters: 'friends',
           v: '5.131',
-          access_token: ''
+          access_token:
+            'vk1.a.UkpQ02GSM1JYFZHt7nuwzqm_wn0NOL3WCEsUiiB0Fk1B3MFEkc7jbmr-KJI5X8laANMg6gBHnI_q1241eFx6pPbdUMdr0QIWY12Tf4zirkdDpWLXKCdN8oJus2MDHf_DG9FfL9mas2aq-2Rqqjqp5vJCgGnapS57RuYkwsOlKnJoylmu4xGIih6L2b6EdMMj'
         },
         (r) => {
           if (r) {
             const user = r.response[0]
             commit('setUsers', [user])
-            commit('setIsAdded', { userId: user.id, bool: true });
+            commit('setIsAdded', { userId: user.id, bool: true })
           }
         }
       )
