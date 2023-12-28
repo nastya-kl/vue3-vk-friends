@@ -8,12 +8,21 @@
       </div>
       <p style="align-self: flex-end; margin: 0%">id {{ user.id }}</p>
     </div>
-    <my-button @click="addUser(user.id)" class="user-card__add-btn"></my-button>
+    <my-button
+      v-if="!userIsAdded"
+      @click="addUser(user.id)"
+      class="user-card__add-btn_type_add"
+    ></my-button>
+    <my-button
+      v-else
+      @click="removeUser(user.id)"
+      class="user-card__add-btn_type_delete"
+    ></my-button>
   </li>
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   props: {
@@ -22,16 +31,20 @@ export default {
       required: true
     }
   },
+  computed: {
+    isUserAdded() {
+      return this.$store.state.user.isUserAdded
+    },
+    ...mapGetters('user', ['isUserAdded']),
+    userIsAdded() {
+      return this.isUserAdded(this.user.id)
+    }
+  },
   methods: {
     ...mapActions({
-      addUser: 'user/addUser'
+      addUser: 'user/addUser',
+      removeUser: 'user/removeUser'
     })
-    // addUser(userId) {
-    //   this.$store.commit('addUser', userId);
-    // },
-    // removeUser(userId) {
-    //   this.$store.commit('removeUser', userId);
-    // },
   }
 }
 </script>
@@ -75,10 +88,17 @@ export default {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.user-card__add-btn {
+.user-card__add-btn_type_add {
   top: 0;
   right: 0;
   background: url('../../public/icons/Add-Icon.svg') no-repeat center;
+  width: 30px;
+  height: 30px;
+}
+.user-card__add-btn_type_delete {
+  top: 0;
+  right: 0;
+  background: url('../../public/icons/Delete-Icon.svg') no-repeat center;
   width: 30px;
   height: 30px;
 }

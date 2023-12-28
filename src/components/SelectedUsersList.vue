@@ -1,6 +1,6 @@
 <template>
   <section class="selected-users" aria-label="Список выбранных пользователей">
-    <h2 class="section__title" @click="log">Исходный список</h2>
+    <h2 class="section__title">Исходный список</h2>
     <my-button class="section__btn">Построить</my-button>
     <my-users-list>
       <transition-group v-if="userList.length > 0" name="user-list">
@@ -12,25 +12,19 @@
 </template>
 
 <script>
+import MyUsersList from '@/components/UI/MyUsersList.vue'
+import UserCard from '@/components/UserCard.vue'
+
 export default {
-  // data() {
-  //   return {
-  //     userList: [],
-  //   };
-  // },
+  components: {
+    MyUsersList,
+    UserCard
+  },
   computed: {
-    // ...mapState({
-    //   userList: state => state.user.userList,
-    // })
     userList() {
       return this.$store.state.user.userList
     }
   },
-  methods: {
-    log() {
-      console.log(this.userList)
-    }
-  }
 }
 </script>
 

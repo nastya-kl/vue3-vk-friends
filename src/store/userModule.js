@@ -1,18 +1,18 @@
 export const userModule = {
   state: {
     userList: [],
-    token: ''
+    isAddedMap: {} // Используем объект для отслеживания isAdded для каждого пользователя
   },
   mutations: {
     setUsers(state, users) {
-      state.userList = users
+      state.userList = [...state.userList, ...users]
     },
-    setToken(state, token) {
-      state.token = token
+    setIsAdded(state, { userId, bool }) {
+      state.isAddedMap = { ...state.isAddedMap, [userId]: bool }
     }
   },
   actions: {
-    addUser({ state, commit }, userID) {
+    addUser({ commit }, userID) {
       // eslint-disable-next-line no-undef
       VK.Api.call(
         'users.get',
@@ -21,16 +21,26 @@ export const userModule = {
           fields: ['photo_200_orig', 'sex', 'bdate'],
           counters: 'friends',
           v: '5.131',
-          access_token: state.token
+          access_token: ''
         },
         (r) => {
           if (r) {
-            console.log(r.response)
-            commit('setUsers', r.response)
-            //state.userList.push(r.response)
+            const user = r.response[0]
+            commit('setUsers', [user])
+            commit('setIsAdded', { userId: user.id, bool: true });
           }
         }
       )
+    },
+    removeUser({ state, commit }, userID) {
+      state.userList = state.userList.filter((user) => user.id !== userID)
+      commit('setIsAdded', { userId: userID, bool: false })
+    }
+  },
+  getters: {
+    isUserAdded: (state) => (userId) => {
+      // Возвращаем значение isAdded для конкретного пользователя
+      return state.isAddedMap[userId] || false
     }
   },
   namespaced: true
