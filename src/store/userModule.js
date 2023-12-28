@@ -1,7 +1,7 @@
 export const userModule = {
   state: {
     userList: [],
-    isAddedMap: {} // Используем объект для отслеживания isAdded для каждого пользователя
+    isAddedMap: {}
   },
   mutations: {
     setUsers(state, users) {
@@ -39,7 +39,6 @@ export const userModule = {
   },
   getters: {
     isUserAdded: (state) => (userId) => {
-      // Возвращаем значение isAdded для конкретного пользователя
       return state.isAddedMap[userId] || false
     }
   },

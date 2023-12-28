@@ -1,8 +1,11 @@
 import { ref } from 'vue'
+import useGetToken from '@/components/hooks/useGetToken'
 
 export default function useSearchUsers() {
   const users = ref([])
   const searchQuery = ref('')
+
+  const { token } = useGetToken()
 
   function searchUsers() {
     if (searchQuery.value.trim() === '') {
@@ -18,7 +21,7 @@ export default function useSearchUsers() {
           user_ids: searchQuery.value,
           fields: 'photo_200_orig',
           v: '5.131',
-          access_token: ''
+          access_token: token
 
         },
         (r) => {
@@ -35,7 +38,7 @@ export default function useSearchUsers() {
           q: searchQuery.value,
           fields: 'photo_200_orig',
           v: '5.131',
-          access_token: ''
+          access_token: token
         },
         (r) => {
           if (r) {
@@ -61,7 +64,7 @@ export default function useSearchUsers() {
         v: '5.131',
         offset: users.value.length,
         count: 5,
-        access_token: ''
+        access_token: token
       },
       (r) => {
         if (r) {
