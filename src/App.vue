@@ -18,11 +18,16 @@ const scope = 'friends,photos,wall'
 
 const authUrl = `https://oauth.vk.com/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=token&scope=${scope}&v=5.131`
 
+import { mapMutations } from 'vuex'
+
 export default {
   onMount() {
     this.checkAccessToken()
   },
   methods: {
+    ...mapMutations({
+      setToken: "user/setToken",
+    }),
     redirectToVk() {
       window.location.href = authUrl
     },
@@ -34,19 +39,11 @@ export default {
       const accessToken = this.getAccessTokenFromUrl()
       if (accessToken) {
         console.log('Access Token:', accessToken)
-        this.$store.commit('setToken', accessToken)
+        this.setToken(accessToken)
       }
     }
   }
 }
-
-function getAccessTokenFromUrl() {
-  const match = window.location.href.match(/access_token=([^&]+)/)
-  return match ? match[1] : null
-}
-
-const accessToken = getAccessTokenFromUrl()
-console.log('Access Token:', accessToken)
 </script>
 
 <style>
