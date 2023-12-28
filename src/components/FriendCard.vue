@@ -8,7 +8,7 @@
       </div>
       <div class="friend-card__info">
         <p class="friend-card__gender">Пол: {{ getGender(user) }}</p>
-        <p class="friend-card__age">Возраст: {{ getGender(user) }}</p>
+        <p class="friend-card__age">Возраст: </p>
       </div>
     </div>
   </li>
