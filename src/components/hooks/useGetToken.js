@@ -1,6 +1,6 @@
 import { onMounted, ref } from 'vue'
 
-export default function useSearchUsers() {
+export default function useGetToken() {
   const token = ref('')
 
   function getAccessTokenFromUrl() {
@@ -11,7 +11,6 @@ export default function useSearchUsers() {
   function checkAccessToken() {
     const accessToken = getAccessTokenFromUrl()
     if (accessToken) {
-      console.log('Access Token:', accessToken)
       token.value = accessToken
     }
   }
