@@ -1,7 +1,7 @@
 <template>
   <section class="selected-users" aria-label="Список выбранных пользователей">
     <h2 class="section__title">Исходный список</h2>
-    <my-button class="section__btn">Построить</my-button>
+    <my-button class="section__btn" @click="getFriends">Построить</my-button>
     <my-users-list>
       <transition-group v-if="userList.length > 0" name="user-list">
         <UserCard v-for="user in userList" :user="user" :key="user.id" />
@@ -14,6 +14,7 @@
 <script>
 import MyUsersList from '@/components/UI/MyUsersList.vue'
 import UserCard from '@/components/UserCard.vue'
+import { mapActions } from 'vuex'
 
 export default {
   components: {
@@ -25,6 +26,14 @@ export default {
       return this.$store.state.user.userList
     }
   },
+  methods: {
+    ...mapActions({
+      addFriend: 'friend/addFriend'
+    }),
+    getFriends() {
+      this.addFriend(this.userList)
+    }
+  }
 }
 </script>
 
