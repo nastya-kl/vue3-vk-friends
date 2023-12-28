@@ -17,7 +17,9 @@ export default function useSearchUsers() {
         {
           user_ids: searchQuery.value,
           fields: 'photo_200_orig',
-          v: '5.131'
+          v: '5.131',
+          access_token: this.$store.state.user.token
+
         },
         (r) => {
           if (r) {
@@ -32,7 +34,8 @@ export default function useSearchUsers() {
         {
           q: searchQuery.value,
           fields: 'photo_200_orig',
-          v: '5.131'
+          v: '5.131',
+          access_token: this.$store.state.user.token
         },
         (r) => {
           if (r) {
@@ -57,7 +60,8 @@ export default function useSearchUsers() {
         fields: 'photo_200_orig',
         v: '5.131',
         offset: users.value.length,
-        count: 5
+        count: 5,
+        access_token: this.$store.state.user.token
       },
       (r) => {
         if (r) {

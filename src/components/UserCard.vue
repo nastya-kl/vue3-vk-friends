@@ -6,19 +6,32 @@
         <p class="user-card__name">{{ user.first_name }}</p>
         <p class="user-card__last-name">{{ user.last_name }}</p>
       </div>
-      <p style="align-self: flex-end; margin: 0%;">id {{ user.id }}</p>
+      <p style="align-self: flex-end; margin: 0%">id {{ user.id }}</p>
     </div>
-    <my-button class="user-card__add-btn"></my-button>
+    <my-button @click="addUser(user.id)" class="user-card__add-btn"></my-button>
   </li>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   props: {
     user: {
       type: Object,
       required: true
     }
+  },
+  methods: {
+    ...mapActions({
+      addUser: 'user/addUser'
+    })
+    // addUser(userId) {
+    //   this.$store.commit('addUser', userId);
+    // },
+    // removeUser(userId) {
+    //   this.$store.commit('removeUser', userId);
+    // },
   }
 }
 </script>

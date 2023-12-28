@@ -3,6 +3,6 @@ import { userModule } from '@/store/userModule'
 
 export default createStore({
   modules: {
-    post: userModule
+    user: userModule
   }
 })
