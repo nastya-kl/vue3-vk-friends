@@ -70,6 +70,7 @@ function getAccessTokenFromUrl() {
   const match = window.location.href.match(/access_token=([^&]+)/)
   return match ? match[1] : null
 }
+
 const accessToken = getAccessTokenFromUrl()
 console.log('Access Token:', accessToken)
 </script>
