@@ -42,8 +42,10 @@
 <script>
 const clientId = 51822456
 const redirectUri = 'https://nastya-kl.github.io/vue3-vk-friends/'
-const scope = 'friends,photos,wall'
+const scope = 'friends'
+
 const authUrl = `https://oauth.vk.com/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=token&scope=${scope}&v=5.131`
+
 
 export default {
   onMount() {
@@ -53,26 +55,8 @@ export default {
     redirectToVk() {
       window.location.href = authUrl
     },
-    getAccessTokenFromUrl() {
-      const match = window.location.href.match(/access_token=([^&]+)/)
-      return match ? match[1] : null
-    },
-    checkAccessToken() {
-      const accessToken = this.getAccessTokenFromUrl()
-      if (accessToken) {
-        console.log('Access Token:', accessToken)
-        this.$store.commit('setToken', accessToken)
-      }
-    }
   }
 }
-function getAccessTokenFromUrl() {
-  const match = window.location.href.match(/access_token=([^&]+)/)
-  return match ? match[1] : null
-}
-
-const accessToken = getAccessTokenFromUrl()
-console.log('Access Token:', accessToken)
 </script>
 
 <style>

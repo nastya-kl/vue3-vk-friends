@@ -1,9 +1,12 @@
 import { ref } from 'vue'
+import useGetToken from '@/components/hooks/useGetToken'
 
 export default function useSearchUsers() {
   const users = ref([])
   const searchQuery = ref('')
-  const token = this.$store.state.user.token
+  const { token } = useGetToken()
+
+  console.log(token);
 
   function searchUsers() {
     if (searchQuery.value.trim() === '') {

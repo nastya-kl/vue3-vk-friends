@@ -1,8 +1,7 @@
 export const userModule = {
   state: {
     userList: [],
-    isAddedMap: {},
-    token: ''
+    isAddedMap: {}
   },
   mutations: {
     setUsers(state, users) {
@@ -10,13 +9,10 @@ export const userModule = {
     },
     setIsAdded(state, { userId, bool }) {
       state.isAddedMap = { ...state.isAddedMap, [userId]: bool }
-    },
-    setToken(state, token) {
-      state.token = token
     }
   },
   actions: {
-    addUser({ commit, state }, userID) {
+    addUser({ commit }, userID) {
       // eslint-disable-next-line no-undef
       VK.Api.call(
         'users.get',
@@ -25,7 +21,7 @@ export const userModule = {
           fields: ['photo_200_orig', 'sex', 'bdate'],
           counters: ['friends'],
           v: '5.131',
-          access_token: state.token
+          access_token: ''
         },
         (r) => {
           if (r) {
