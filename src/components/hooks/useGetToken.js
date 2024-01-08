@@ -18,6 +18,6 @@ export default function useGetToken() {
   onMounted(checkAccessToken)
 
   return {
-    token
+    token: token.value
   }
 }
