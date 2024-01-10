@@ -1,7 +1,7 @@
-import { onMounted, ref } from 'vue'
+import { onMounted } from 'vue'
 
 export default function useGetToken() {
-  const token = ref('')
+  let token = ''
 
   function getAccessTokenFromUrl() {
     const match = window.location.href.match(/access_token=([^&]+)/)
@@ -11,13 +11,13 @@ export default function useGetToken() {
   function checkAccessToken() {
     const accessToken = getAccessTokenFromUrl()
     if (accessToken) {
-      token.value = accessToken
+      token = accessToken
     }
   }
 
   onMounted(checkAccessToken)
 
   return {
-    token: token.value
+    token
   }
 }
