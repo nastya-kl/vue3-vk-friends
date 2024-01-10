@@ -22,8 +22,7 @@ export const friendsModule = {
           {
             user_id: user.id,
             order: 'name',
-            fields: ['photo_200_orig', 'sex', 'bdate'],
-            counters: ['friends'],
+            fields: ['photo_200_orig', 'sex', 'bdate', 'is_closed'],
             offset: state.friendsList.length,
             v: '5.131',
             access_token: token

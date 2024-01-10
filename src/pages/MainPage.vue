@@ -27,7 +27,7 @@ export default {
 .main-page__heading {
   font-size: 40px;
   font-weight: 700;
-  margin: 30px 0 80px;
+  margin: 0 0 50px;
   text-align: center;
   color: rgb(241, 241, 241);
 }

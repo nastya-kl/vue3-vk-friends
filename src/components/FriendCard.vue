@@ -1,21 +1,25 @@
 <template>
   <li class="friend-card">
-    <div :style="{ display: 'flex', justifyContent: 'space-between' }">
+    <div class="friend-card__container">
       <img :src="user.photo_200_orig" alt="Фото пользователя" class="friend-card__photo" />
-      <div class="friend-card__info">
-        <p class="friend-card__name">{{ user.first_name }}</p>
-        <p class="friend-card__last-name">{{ user.last_name }}</p>
-      </div>
-      <div class="friend-card__info">
-        <p class="friend-card__gender">Пол: {{ getGender(user) }}</p>
-        <p class="friend-card__age">Возраст: </p>
+      <div class="friends-card__text">
+        <div class="friend-card__info">
+          <p class="friend-card__name">{{ user.first_name }}</p>
+          <p class="friend-card__last-name">{{ user.last_name }}</p>
+        </div>
+        <div class="friend-card__info">
+          <p class="friend-card__gender">Пол: {{ getGender(user) }}</p>
+          <p class="friend-card__age">Возраст: {{ getAge(user) }}</p>
+          <p class="friend-card__age">Друзья: {{ amount }}</p>
+        </div>
       </div>
     </div>
   </li>
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import useGetToken from '@/components/hooks/useGetToken'
+const { token } = useGetToken()
 
 export default {
   props: {
@@ -24,22 +28,65 @@ export default {
       required: true
     }
   },
-  computed: {
-    isUserAdded() {
-      return this.$store.state.user.isUserAdded
-    },
-    ...mapGetters('user', ['isUserAdded']),
-    userIsAdded() {
-      return this.isUserAdded(this.user.id)
+  data() {
+    return {
+      amount: 0
     }
   },
   methods: {
-    ...mapActions({
-      addUser: 'user/addUser',
-      removeUser: 'user/removeUser'
-    }),
+    async setFriends(user) {
+      try {
+        // eslint-disable-next-line no-undef
+        VK.Api.call(
+          'friends.get',
+          {
+            user_id: user.id,
+            order: 'name',
+            v: '5.131',
+            access_token: token
+          },
+          (r) => {
+            if (r && user.isClosed === false) {
+              const friends = r.response.count
+              console.log('friends');
+              this.amount = friends
+            }
+            console.log('friends');
+            this.amount = 'Скрыты'
+          }
+        )
+      } catch (e) {
+        console.log(e);
+      }
+    },
+    onMounted() {
+      this.setFriends(this.user)
+    },
     getGender(user) {
       return user.sex === 0 ? 'Мужской' : 'Женский'
+    },
+    getAge(user) {
+      if (user.bdate && user.bdate.split('.') === 3) {
+        const dateArray = user.bdate.split('.')
+        const day = parseInt(dateArray[0], 10)
+        const month = parseInt(dateArray[1], 10) - 1
+        const year = parseInt(dateArray[2], 10)
+
+        const birthDate = new Date(year, month, day)
+        const currentDate = new Date()
+
+        let age = currentDate.getFullYear() - birthDate.getFullYear()
+
+        if (
+          currentDate.getMonth() < birthDate.getMonth() ||
+          (currentDate.getMonth() === birthDate.getMonth() &&
+            currentDate.getDate() < birthDate.getDate())
+        ) {
+          age--
+        }
+        return age
+      }
+      return 'Не указан'
     }
   }
 }
@@ -54,11 +101,18 @@ export default {
   padding: 10px 15px;
   box-sizing: border-box;
   background-color: rgb(175, 175, 175);
-  display: flex;
-  justify-content: space-between;
   border-radius: 3px;
-  align-items: center;
   overflow: hidden;
+  transition: all 0.2s ease-in-out;
+}
+.friend-card:hover {
+  cursor: pointer;
+  opacity: 0.9;
+  transform: scale(1.01);
+}
+.friend-card__container {
+  display: flex;
+  width: 100%;
 }
 .friend-card__photo {
   width: 70px;
@@ -67,6 +121,11 @@ export default {
   border-radius: 4px;
   margin-right: 20px;
 }
+.friends-card__text {
+  display: flex;
+  justify-content: space-between;
+  width: 74%;
+}
 .friend-card__info {
   font-size: 13px;
   font-weight: 500;
@@ -74,6 +133,11 @@ export default {
   flex-direction: column;
   justify-content: center;
   margin-right: 10px;
+}
+.friend-card__name,
+.friend-card__last-name {
+  font-size: 15px;
+  font-weight: 700;
 }
 .friend-card__name,
 .friend-card__last-name,
