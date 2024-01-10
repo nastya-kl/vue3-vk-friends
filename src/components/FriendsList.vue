@@ -1,7 +1,7 @@
 <template>
   <section class="friends-list" aria-label="Все друзья выбранных пользователей">
     <h2 class="section__title">Друзья</h2>
-    <my-button class="section__btn">Сбросить</my-button>
+    <my-button class="section__btn" @click="resetFriendsList">Сбросить</my-button>
     <my-users-list>
       <transition-group v-if="friendsList.length > 0" name="user-list">
         <FriendCard v-for="user in friendsList" :user="user" :key="user.id" />
@@ -25,6 +25,11 @@ export default {
       return this.$store.state.friend.friendsList
     }
   },
+  methods: {
+    resetFriendsList() {
+      this.$store.dispatch('friend/resetFriendsList')
+    }
+  }
 }
 </script>
 

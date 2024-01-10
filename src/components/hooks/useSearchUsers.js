@@ -5,8 +5,6 @@ export default function useSearchUsers() {
   const users = ref([])
   const searchQuery = ref('')
   const { token } = useGetToken()
-  
-  console.log(token);
 
   function searchUsers() {
     if (searchQuery.value.trim() === '') {
@@ -81,5 +79,3 @@ export default function useSearchUsers() {
     loadMoreUsers
   }
 }
-
-

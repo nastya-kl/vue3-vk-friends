@@ -8,6 +8,9 @@ export const friendsModule = {
   mutations: {
     setFriendsList(state, friends) {
       state.friendsList = [...friends]
+    },
+    resetFriendsList(state) {
+      state.friendsList = []
     }
   },
   actions: {
@@ -33,6 +36,9 @@ export const friendsModule = {
           }
         )
       })
+    },
+    resetFriendsList({ commit }) {
+      commit('resetFriendsList')
     }
   },
   namespaced: true
