@@ -6,8 +6,6 @@ export default function useSearchUsers() {
   const searchQuery = ref('')
   const { token } = useGetToken()
 
-  console.log(token);
-
   function searchUsers() {
     if (searchQuery.value.trim() === '') {
       users.value = []

@@ -1,3 +1,6 @@
+import useGetToken from '@/components/hooks/useGetToken'
+const { token } = useGetToken()
+
 export const userModule = {
   state: {
     userList: [],
@@ -21,7 +24,7 @@ export const userModule = {
           fields: ['photo_200_orig', 'sex', 'bdate'],
           counters: ['friends'],
           v: '5.131',
-          access_token: ''
+          access_token: token
         },
         (r) => {
           if (r) {

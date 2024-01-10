@@ -1,3 +1,6 @@
+import useGetToken from '@/components/hooks/useGetToken'
+const { token } = useGetToken()
+
 export const friendsModule = {
   state: {
     friendsList: []
@@ -20,8 +23,7 @@ export const friendsModule = {
             counters: ['friends'],
             offset: state.friendsList.length,
             v: '5.131',
-            access_token:
-              'vk1.a.UkpQ02GSM1JYFZHt7nuwzqm_wn0NOL3WCEsUiiB0Fk1B3MFEkc7jbmr-KJI5X8laANMg6gBHnI_q1241eFx6pPbdUMdr0QIWY12Tf4zirkdDpWLXKCdN8oJus2MDHf_DG9FfL9mas2aq-2Rqqjqp5vJCgGnapS57RuYkwsOlKnJoylmu4xGIih6L2b6EdMMj'
+            access_token: token
           },
           (r) => {
             if (r) {
