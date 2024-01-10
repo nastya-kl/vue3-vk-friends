@@ -5,6 +5,14 @@ export default function useSearchUsers() {
   const users = ref([])
   const searchQuery = ref('')
   const { token } = useGetToken()
+  console.log(token);
+
+  function getAccessTokenFromUrl() {
+    const match = window.location.href.match(/access_token=([^&]+)/)
+    return match ? match[1] : null
+  }
+
+  console.log(getAccessTokenFromUrl());
 
   function searchUsers() {
     if (searchQuery.value.trim() === '') {

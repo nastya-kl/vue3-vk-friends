@@ -10,7 +10,6 @@ export default function useGetToken() {
 
   function checkAccessToken() {
     const accessToken = getAccessTokenFromUrl()
-    console.log(accessToken);
     if (accessToken) {
       token.value = accessToken
     }
