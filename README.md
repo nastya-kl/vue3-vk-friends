@@ -1,27 +1,19 @@
 # vue3-vk-friends
 
-This template should help get you started developing with Vue 3 in Vite.
+Проект выполнен в рамках тестового задания от компании "Уно-Софт"
+Сайт представляет собой страницу поиска друзей Вконтакте. После авторизации можно через поиск найти любого пользователя и запросить список его друзей.
 
-## Project Setup
+## Технологии
 
-```sh
-npm install
-```
+- JS
+- HTML5
+- CSS3
+- Vue
+- Vuex
+- VK Api
 
-### Compile and Hot-Reload for Development
+## Установка и запуск проекта
 
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+1. Клонируйте репозиторий с помощью команды `git clone https://github.com/nastya-kl/vue3-vk-friends.git`
+2. Установите зависимости с помощью команды `npm i`
+3. Запустите проект с помощью команды `npm run dev`
