@@ -22,7 +22,6 @@ export const userModule = {
         {
           user_ids: userID,
           fields: ['photo_200_orig', 'sex', 'bdate'],
-          counters: ['friends'],
           v: '5.131',
           access_token: token
         },

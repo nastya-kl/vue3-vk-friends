@@ -5,10 +5,10 @@
       <div class="user-card__info">
         <p class="user-card__name">{{ user.first_name }}</p>
         <p class="user-card__last-name">{{ user.last_name }}</p>
+        <p class="user-card__id">id&nbsp;{{ user.id }}</p>
       </div>
-      <p style="align-self: flex-end; margin: 0%">id {{ user.id }}</p>
     </div>
-    <p v-if="user.is_closed" :style="{ fontSize: '11px', textAlign: 'center' }">
+    <p v-if="user.is_closed" class="user-card__no-friends-text">
       Друзья<br />скрыты
     </p>
     <div v-else>
@@ -59,7 +59,7 @@ export default {
   color: rgb(44, 44, 44);
   position: relative;
   width: 100%;
-  min-height: 60px;
+  min-height: 85px;
   padding: 10px 15px;
   box-sizing: border-box;
   background-color: rgb(175, 175, 175);
@@ -88,12 +88,27 @@ export default {
     margin-right: 10px;
   }
 
+  &__id {
+    align-self: flex-start;
+    margin: 0;
+    font-size: 13px;
+    font-weight: 600;
+    color: #362957;
+  }
+
   &__name,
   &__last-name {
     margin: 0;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+
+  &__no-friends-text {
+    font-size: 12px;
+    text-align: center;
+    font-weight: 500;
+    color: #7f1414;
   }
 
   &__add-btn_type_add {

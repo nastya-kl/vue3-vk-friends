@@ -24,7 +24,6 @@ export const userProfileModule = {
         (r) => {
           if (r) {
             const user = r.response[0]
-            console.log(user);
             commit('setUser', user)
           }
         }
