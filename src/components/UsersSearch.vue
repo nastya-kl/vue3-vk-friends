@@ -2,7 +2,8 @@
   <section class="search-form" aria-label="Форма поиска пользователей">
     <h2 class="section__title">Все пользователи</h2>
     <my-input
-      v-model="searchQuery"
+      :model-value="searchQuery"
+      @update:modelValue="setSearchQuery"
       @input="searchUsers"
       class="search-form__input"
       placeholder="Введите имя, фамилию или id пользователя"
@@ -22,23 +23,41 @@
 <script>
 import MyUsersList from '@/components/UI/MyUsersList.vue'
 import UserCard from '@/components/UserCard.vue'
-import useSearchUsers from '@/components/hooks/useSearchUsers'
+import { mapActions, mapMutations } from 'vuex'
+// import useSearchUsers from '@/components/hooks/useSearchUsers'
 
 export default {
   components: {
     MyUsersList,
     UserCard
   },
-  setup() {
-    const { users, searchQuery, searchUsers, loadMoreUsers } = useSearchUsers()
-
-    return {
-      users,
-      searchQuery,
-      searchUsers,
-      loadMoreUsers
+  computed: {
+    users() {
+      return this.$store.state.search.users
+    },
+    searchQuery() {
+      return this.$store.state.search.searchQuery
     }
+  },
+  methods: {
+    ...mapActions({
+      searchUsers: 'search/searchUsers',
+      loadMoreUsers: 'search/loadMoreUsers'
+    }),
+    ...mapMutations({
+      setSearchQuery: 'search/setSearchQuery'
+    })
   }
+  // setup() {
+  //   const { users, searchQuery, searchUsers, loadMoreUsers } = useSearchUsers()
+
+  //   return {
+  //     users,
+  //     searchQuery,
+  //     searchUsers,
+  //     loadMoreUsers
+  //   }
+  // }
 }
 </script>
 
