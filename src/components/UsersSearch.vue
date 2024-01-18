@@ -48,16 +48,6 @@ export default {
       setSearchQuery: 'search/setSearchQuery'
     })
   }
-  // setup() {
-  //   const { users, searchQuery, searchUsers, loadMoreUsers } = useSearchUsers()
-
-  //   return {
-  //     users,
-  //     searchQuery,
-  //     searchUsers,
-  //     loadMoreUsers
-  //   }
-  // }
 }
 </script>
 

@@ -70,8 +70,8 @@ export default {
   overflow: hidden;
 
   &__photo {
-    width: 50px;
-    height: 50px;
+    width: 70px;
+    height: 70px;
     object-fit: cover;
     border-radius: 4px;
     margin-right: 20px;
