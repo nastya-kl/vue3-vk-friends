@@ -7,7 +7,10 @@ export const friendsModule = {
   },
   mutations: {
     setFriendsList(state, friends) {
-      state.friendsList = [...friends]
+      const uniqueFriends = friends.filter(
+        (friend) => !state.friendsList.some((existingFriend) => existingFriend.id === friend.id)
+      )
+      state.friendsList = [...state.friendsList, ...uniqueFriends]
     },
     resetFriendsList(state) {
       state.friendsList = []
@@ -53,7 +56,7 @@ export const friendsModule = {
           (r) => {
             if (r) {
               const friends = r.response.items
-              commit('setFriendsList', [...state.friendsList , ...friends])
+              commit('setFriendsList', [...state.friendsList, ...friends])
             }
           }
         )
