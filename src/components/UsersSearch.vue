@@ -10,12 +10,8 @@
     <my-users-list>
       <transition-group v-if="users.length > 0" name="user-list">
         <UserCard v-for="user in users" :user="user" :key="user.id" />
-        <my-button
-          v-if="!isFinite(this.searchQuery)"
-          @click="loadMoreUsers"
-          style="padding: 10px"
-          >
-            Ещё
+        <my-button v-if="!isFinite(this.searchQuery)" @click="loadMoreUsers" style="padding: 10px">
+          Ещё
         </my-button>
       </transition-group>
       <h3 class="users-list__heading-empty" v-else>Пользователь не найден</h3>
@@ -42,19 +38,21 @@ export default {
       searchUsers,
       loadMoreUsers
     }
-  },
+  }
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .search-form {
   width: 100%;
   margin: 0 auto;
+
+  &__input {
+    width: 100%;
+    min-height: 40px;
+  }
 }
-.search-form__input {
-  width: 100%;
-  min-height: 40px;
-}
+
 .user-list-enter-active,
 .user-list-leave-active {
   transition: all 0.4s ease;
@@ -66,10 +64,5 @@ export default {
 }
 .user-list-move {
   transition: transform 0.4s ease;
-}
-.observer {
-  height: 10px;
-  width: 80%;
-  background-color: aqua;
 }
 </style>

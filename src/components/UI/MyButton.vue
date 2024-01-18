@@ -10,7 +10,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .button {
   padding: 0;
   border: none;
@@ -18,12 +18,13 @@ export default {
   color: rgb(219, 219, 219);
   background-color: rgb(50, 102, 179);
   border-radius: 3px;
-  transition: transform .2s ease-in-out;
-}
-.button:hover {
-  transform: scale(1.03);
-}
-.button:active {
-  opacity: .8;
+  transition: transform 0.2s ease-in-out;
+
+  &:hover {
+    transform: scale(1.03);
+  }
+  &:active {
+    opacity: 0.8;
+  }
 }
 </style>

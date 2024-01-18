@@ -56,7 +56,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 .friend-card {
   color: rgb(44, 44, 44);
   position: relative;
@@ -68,62 +68,71 @@ export default {
   border-radius: 3px;
   overflow: hidden;
   transition: all 0.2s ease-in-out;
-}
-.friend-card:hover {
-  cursor: pointer;
-  opacity: 0.9;
-  transform: scale(1.01);
-}
-.friend-card__container {
-  display: flex;
-  width: 100%;
-}
-.friend-card__photo {
-  width: 70px;
-  height: 70px;
-  object-fit: cover;
-  border-radius: 4px;
-  margin-right: 20px;
-}
-.friends-card__text {
-  display: flex;
-  justify-content: space-between;
-  width: 74%;
-}
-.friend-card__info {
-  font-size: 13px;
-  font-weight: 500;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin-right: 10px;
-}
-.friend-card__name,
-.friend-card__last-name {
-  font-size: 15px;
-  font-weight: 700;
-}
-.friend-card__name,
-.friend-card__last-name,
-.friend-card__gender,
-.friend-card__age {
-  margin: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.friend-card__add-btn_type_add {
-  top: 0;
-  right: 0;
-  background: url('../../public/icons/Add-Icon.svg') no-repeat center;
-  width: 30px;
-  height: 30px;
-}
-.friend-card__add-btn_type_delete {
-  top: 0;
-  right: 0;
-  background: url('../../public/icons/Delete-Icon.svg') no-repeat center;
-  width: 30px;
-  height: 30px;
+
+  &:hover {
+    cursor: pointer;
+    opacity: 0.9;
+    transform: scale(1.01);
+  }
+
+  &__container {
+    display: flex;
+    width: 100%;
+  }
+
+  &__photo {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-right: 20px;
+  }
+
+  &__text {
+    display: flex;
+    justify-content: space-between;
+    width: 74%;
+  }
+
+  & {
+    font-size: 13px;
+    font-weight: 500;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-right: 10px;
+  }
+
+  &__name,
+  &__last-name {
+    font-size: 15px;
+    font-weight: 700;
+  }
+
+  &__name,
+  &__last-name,
+  &__gender,
+  &__age {
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__add-btn_type_add {
+    top: 0;
+    right: 0;
+    background: url('../../public/icons/Add-Icon.svg') no-repeat center;
+    width: 30px;
+    height: 30px;
+  }
+
+  &__add-btn_type_delete {
+    top: 0;
+    right: 0;
+    background: url('../../public/icons/Delete-Icon.svg') no-repeat center;
+    width: 30px;
+    height: 30px;
+  }
 }
 </style>

@@ -10,7 +10,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped lang="scss">
 .users-list {
   position: relative;
   height: 57vh;
@@ -24,15 +24,18 @@ export default {
   justify-content: flex-start;
   gap: 10px;
   overflow-y: scroll;
-}
-.users-list::-webkit-scrollbar {
-  width: 7px;
-}
-.users-list::-webkit-scrollbar-track {
-  background-color: inherit;
-}
-.users-list::-webkit-scrollbar-thumb {
-  background-color: #888;
-  border-radius: 6px;
+
+  &::-webkit-scrollbar {
+    width: 7px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background-color: inherit;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 6px;
+  }
 }
 </style>
