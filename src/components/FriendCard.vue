@@ -1,6 +1,6 @@
 <template>
-  <li class="friend-card">
-    <div class="friend-card__container">
+  <li class="friend-card" @click="$router.push(`/vue3-vk-friends/users/${user.id}`)">
+    <div class="friend-card__container" @click="getFriends">
       <img :src="user.photo_200_orig" alt="Фото пользователя" class="friend-card__photo" />
       <div class="friends-card__text">
         <div class="friend-card__info">
@@ -10,7 +10,6 @@
         <div class="friend-card__info">
           <p class="friend-card__gender">Пол: {{ getGender(user) }}</p>
           <p class="friend-card__age">Возраст: {{ getAge(user) }}</p>
-          <p class="friend-card__age">Друзья: {{ amount }}</p>
         </div>
       </div>
     </div>
@@ -18,9 +17,6 @@
 </template>
 
 <script>
-import useGetToken from '@/components/hooks/useGetToken'
-const { token } = useGetToken()
-
 export default {
   props: {
     user: {
@@ -28,40 +24,8 @@ export default {
       required: true
     }
   },
-  data() {
-    return {
-      amount: 0
-    }
-  },
+
   methods: {
-    async setFriends(user) {
-      try {
-        // eslint-disable-next-line no-undef
-        VK.Api.call(
-          'friends.get',
-          {
-            user_id: user.id,
-            order: 'name',
-            v: '5.131',
-            access_token: token
-          },
-          (r) => {
-            if (r && user.isClosed === false) {
-              const friends = r.response.count
-              console.log('friends');
-              this.amount = friends
-            }
-            console.log('friends');
-            this.amount = 'Скрыты'
-          }
-        )
-      } catch (e) {
-        console.log(e);
-      }
-    },
-    onMounted() {
-      this.setFriends(this.user)
-    },
     getGender(user) {
       return user.sex === 0 ? 'Мужской' : 'Женский'
     },

@@ -8,16 +8,21 @@
       </div>
       <p style="align-self: flex-end; margin: 0%">id {{ user.id }}</p>
     </div>
-    <my-button
-      v-if="!userIsAdded"
-      @click="addUser(user.id)"
-      class="user-card__add-btn_type_add"
-    ></my-button>
-    <my-button
-      v-else
-      @click="removeUser(user.id)"
-      class="user-card__add-btn_type_delete"
-    ></my-button>
+    <p v-if="user.is_closed" :style="{ fontSize: '11px', textAlign: 'center' }">
+      Друзья<br />скрыты
+    </p>
+    <div v-else>
+      <my-button
+        v-if="!userIsAdded"
+        @click="addUser(user.id)"
+        class="user-card__add-btn_type_add"
+      ></my-button>
+      <my-button
+        v-else
+        @click="removeUser(user.id)"
+        class="user-card__add-btn_type_delete"
+      ></my-button>
+    </div>
   </li>
 </template>
 

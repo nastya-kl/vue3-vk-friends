@@ -14,7 +14,7 @@ export const friendsModule = {
     }
   },
   actions: {
-    addFriend({ commit, state }, usersList) {
+    addFriend({ commit }, usersList) {
       usersList.forEach((user) => {
         // eslint-disable-next-line no-undef
         VK.Api.call(
@@ -23,14 +23,37 @@ export const friendsModule = {
             user_id: user.id,
             order: 'name',
             fields: ['photo_200_orig', 'sex', 'bdate', 'is_closed'],
-            offset: state.friendsList.length,
             v: '5.131',
+            count: 10,
             access_token: token
           },
           (r) => {
             if (r) {
               const friends = r.response.items
               commit('setFriendsList', friends)
+            }
+          }
+        )
+      })
+    },
+    loadmoreFriends({ commit, state }, usersList) {
+      usersList.forEach((user) => {
+        // eslint-disable-next-line no-undef
+        VK.Api.call(
+          'friends.get',
+          {
+            user_id: user.id,
+            order: 'name',
+            fields: ['photo_200_orig', 'sex', 'bdate', 'is_closed'],
+            v: '5.131',
+            offset: state.friendsList.length,
+            count: 5,
+            access_token: token
+          },
+          (r) => {
+            if (r) {
+              const friends = r.response.items
+              commit('setFriendsList', [...state.friendsList , ...friends])
             }
           }
         )
